@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apna Supermarket - Fresh Groceries, Everyday Essentials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class"
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .testimonial-slider {
+        overflow: hidden;
+        position: relative;
+      }
+      .testimonial-container {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+      .testimonial-slide {
+        flex: 0 0 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .testimonial-slide.active {
+        opacity: 1;
+      }
+      .carousel-container {
+        position: relative;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .carousel-container::-webkit-scrollbar {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .carousel-container {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-10">
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+          <div class="text-xl font-bold text-green-600 dark:text-green-400">
+            <a href="#home" class="flex items-center">
+              <i class="fas fa-shopping-basket mr-2 text-2xl"></i>
+              Apna Supermarket
+            </a>
+          </div>
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="#home"
+              class="hover:text-green-600 dark:hover:text-green-400 transition"
+              >Home</a
+            >
+            <a
+              href="#categories"
+              class="hover:text-green-600 dark:hover:text-green-400 transition"
+              >Categories</a
+            >
+            <a
+              href="#offers"
+              class="hover:text-green-600 dark:hover:text-green-400 transition"
+              >Offers</a
+            >
+            <a
+              href="#testimonials"
+              class="hover:text-green-600 dark:hover:text-green-400 transition"
+              >Testimonials</a
+            >
+            <a
+              href="#contact"
+              class="hover:text-green-600 dark:hover:text-green-400 transition"
+              >Contact</a
+            >
+            <button id="theme-toggle" class="theme-toggle p-2 rounded-full">
+              <i
+                id="theme-icon"
+                class="fas fa-moon text-gray-600 dark:text-gray-300"
+              ></i>
+            </button>
+          </div>
+          <div class="md:hidden flex items-center space-x-4">
+            <button
+              id="theme-toggle-mobile"
+              class="theme-toggle p-2 rounded-full"
+            >
+              <i
+                id="theme-icon-mobile"
+                class="fas fa-moon text-gray-600 dark:text-gray-300"
+              ></i>
+            </button>
+            <button class="md:hidden" id="mobile-menu-button">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden w-full">
+        <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+          <a
+            href="#home"
+            class="block py-2 hover:text-green-600 dark:hover:text-green-400 transition"
+            >Home</a
+          >
+          <a
+            href="#categories"
+            class="block py-2 hover:text-green-600 dark:hover:text-green-400 transition"
+            >Categories</a
+          >
+          <a
+            href="#offers"
+            class="block py-2 hover:text-green-600 dark:hover:text-green-400 transition"
+            >Offers</a
+          >
+          <a
+            href="#testimonials"
+            class="block py-2 hover:text-green-600 dark:hover:text-green-400 transition"
+            >Testimonials</a
+          >
+          <a
+            href="#contact"
+            class="block py-2 hover:text-green-600 dark:hover:text-green-400 transition"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen pt-16">
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1579113800032-c38bd7635818?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        "
+      >
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+      </div>
+      <div class="container mx-auto px-4 h-full flex items-center relative z-0">
+        <div class="max-w-2xl hero-content">
+          <span
+            class="px-3 py-1 bg-green-600 dark:bg-green-500 text-white text-sm font-bold rounded-full mb-4 inline-block"
+            >Welcome to</span
+          >
+          <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+            Apna Supermarket
+          </h1>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-white">
+            Fresh Groceries, Everyday Essentials
+          </h2>
+          <p class="text-lg md:text-xl mb-8 text-gray-200">
+            Your neighborhood grocery store in Kammanahalli, Bangalore serving
+            families, professionals, and small businesses.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#categories"
+              class="btn-primary py-3 px-8 rounded-lg transition text-center font-bold"
+              >Explore Our Store</a
+            >
+            <a
+              href="#offers"
+              class="border-2 border-white hover:bg-white hover:text-gray-800 text-white font-bold py-3 px-8 rounded-lg transition text-center"
+              >View Special Offers</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Sale Badge -->
+      <div class="absolute bottom-12 right-5 md:right-12 animate-pulse z-10">
+        <div
+          class="bg-red-600 text-white rounded-full h-24 w-24 flex flex-col items-center justify-center shadow-lg transform rotate-12"
+        >
+          <span class="text-sm font-semibold">SAVE</span>
+          <span class="text-2xl font-bold">20%</span>
+          <span class="text-xs">On Fruits</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Categories Banner -->
+    <section class="py-10 section-bg-primary">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="featured-banner bg-green-100 dark:bg-green-900 h-40 rounded-lg overflow-hidden relative shadow-md animate-on-scroll"
+          >
+            <div
+              class="absolute inset-0 p-6 text-green-900 dark:text-white flex flex-col justify-center"
+            >
+              <h3 class="text-xl font-bold mb-2">Farm Fresh</h3>
+              <p>Organic fruits & vegetables from local farms</p>
+              <a
+                href="#categories"
+                class="inline-block mt-2 font-semibold text-green-700 dark:text-green-300 hover:underline"
+                >Shop Now →</a
+              >
+            </div>
+            <div class="absolute right-0 bottom-0">
+              <img
+                src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Fresh Produce"
+                class="h-40 w-40 object-cover opacity-70"
+              />
+            </div>
+          </div>
+
+          <div
+            class="featured-banner bg-amber-100 dark:bg-amber-900 h-40 rounded-lg overflow-hidden relative shadow-md animate-on-scroll"
+          >
+            <div
+              class="absolute inset-0 p-6 text-amber-900 dark:text-white flex flex-col justify-center"
+            >
+              <h3 class="text-xl font-bold mb-2">Pantry Staples</h3>
+              <p>Premium grains, spices, and cooking essentials</p>
+              <a
+                href="#categories"
+                class="inline-block mt-2 font-semibold text-amber-700 dark:text-amber-300 hover:underline"
+                >Shop Now →</a
+              >
+            </div>
+            <div class="absolute right-0 bottom-0">
+              <img
+                src="https://images.unsplash.com/photo-1514963900376-26e2e66df989?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Pantry Items"
+                class="h-40 w-40 object-cover opacity-70"
+              />
+            </div>
+          </div>
+
+          <div
+            class="featured-banner bg-blue-100 dark:bg-blue-900 h-40 rounded-lg overflow-hidden relative shadow-md animate-on-scroll"
+          >
+            <div
+              class="absolute inset-0 p-6 text-blue-900 dark:text-white flex flex-col justify-center"
+            >
+              <h3 class="text-xl font-bold mb-2">Dairy Fresh</h3>
+              <p>Quality milk, cheese, and dairy products</p>
+              <a
+                href="#categories"
+                class="inline-block mt-2 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
+                >Shop Now →</a
+              >
+            </div>
+            <div class="absolute right-0 bottom-0">
+              <img
+                src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Dairy Products"
+                class="h-40 w-40 object-cover opacity-70"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-16 section-bg-secondary">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center section-header">
+          Explore Our Categories
+        </h2>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
+        >
+          <!-- Category 1 -->
+          <div
+            class="card p-6 text-center transform hover:-translate-y-1 rounded-lg stagger-item stagger-delay-1 category-card"
+          >
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center icon-container"
+            >
+              <i
+                class="fas fa-apple-alt text-green-600 dark:text-green-400 text-2xl"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Fruits & Vegetables</h3>
+            <p class="text-secondary">
+              Fresh, seasonal produce sourced locally.
+            </p>
+          </div>
+
+          <!-- Category 2 -->
+          <div
+            class="card p-6 text-center transform hover:-translate-y-1 rounded-lg stagger-item stagger-delay-2 category-card"
+          >
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center icon-container"
+            >
+              <i
+                class="fas fa-cheese text-blue-600 dark:text-blue-400 text-2xl"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Dairy</h3>
+            <p class="text-secondary">
+              Milk, cheese, curd and other dairy products.
+            </p>
+          </div>
+
+          <!-- Category 3 -->
+          <div
+            class="card p-6 text-center transform hover:-translate-y-1 rounded-lg stagger-item stagger-delay-3 category-card"
+          >
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center icon-container"
+            >
+              <i
+                class="fas fa-seedling text-yellow-600 dark:text-yellow-400 text-2xl"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Grains & Pulses</h3>
+            <p class="text-secondary">
+              Whole grains, rice, lentils and flours.
+            </p>
+          </div>
+
+          <!-- Category 4 -->
+          <div
+            class="card p-6 text-center transform hover:-translate-y-1 rounded-lg stagger-item stagger-delay-4 category-card"
+          >
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center icon-container"
+            >
+              <i
+                class="fas fa-cookie text-red-600 dark:text-red-400 text-2xl"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Snacks</h3>
+            <p class="text-secondary">Chips, biscuits, namkeens and more.</p>
+          </div>
+
+          <!-- Category 5 -->
+          <div
+            class="card p-6 text-center transform hover:-translate-y-1 rounded-lg stagger-item stagger-delay-5 category-card"
+          >
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center icon-container"
+            >
+              <i
+                class="fas fa-wine-bottle text-purple-600 dark:text-purple-400 text-2xl"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Beverages</h3>
+            <p class="text-secondary">Juices, soft drinks, teas and coffees.</p>
+          </div>
+
+          <!-- Category 6 -->
+          <div
+            class="card p-6 text-center transform hover:-translate-y-1 rounded-lg stagger-item stagger-delay-6 category-card"
+          >
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center icon-container"
+            >
+              <i
+                class="fas fa-spray-can text-gray-600 dark:text-gray-400 text-2xl"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Household Supplies</h3>
+            <p class="text-secondary">
+              Cleaning, personal care and essentials.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Picks & Offers Section -->
+    <section id="offers" class="py-16 section-bg-primary">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center section-header">
+          Top Picks & Offers
+        </h2>
+
+        <div class="relative">
+          <div class="carousel-container flex space-x-6 pb-4">
+            <!-- Offer 1 -->
+            <div
+              class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 card overflow-hidden rounded-lg product-card"
+            >
+              <div
+                class="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden image-container"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Fresh Fruits"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="product-badge text-xs font-semibold px-2 py-1 rounded-full mb-3 inline-block"
+                >
+                  20% OFF
+                </div>
+                <h3 class="text-xl font-bold mb-2">Fresh Seasonal Fruits</h3>
+                <p class="text-secondary mb-3">
+                  Handpicked, farm-fresh seasonal fruits at special prices.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-xl font-bold text-green-600 dark:text-green-400"
+                    >₹199</span
+                  >
+                  <span class="text-gray-500 dark:text-gray-400 line-through"
+                    >₹249</span
+                  >
+                </div>
+              </div>
+              <div class="overlay">
+                <button
+                  class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
+                  onclick="addToCartAnimation(this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Offer 2 -->
+            <div
+              class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 card overflow-hidden rounded-lg product-card"
+            >
+              <div
+                class="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden image-container"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1586347875435-82d70d1da2e7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Premium Rice"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="product-badge text-xs font-semibold px-2 py-1 rounded-full mb-3 inline-block"
+                >
+                  COMBO OFFER
+                </div>
+                <h3 class="text-xl font-bold mb-2">Premium Rice</h3>
+                <p class="text-secondary mb-3">
+                  Buy 5kg rice and get 1kg free - limited time offer.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-xl font-bold text-green-600 dark:text-green-400"
+                    >₹299</span
+                  >
+                  <span class="text-gray-500 dark:text-gray-400 line-through"
+                    >₹350</span
+                  >
+                </div>
+              </div>
+              <div class="overlay">
+                <button
+                  class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
+                  onclick="addToCartAnimation(this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Offer 3 -->
+            <div
+              class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 card overflow-hidden rounded-lg product-card"
+            >
+              <div
+                class="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden image-container"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Tea & Coffee"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="product-badge text-xs font-semibold px-2 py-1 rounded-full mb-3 inline-block"
+                >
+                  NEW ARRIVAL
+                </div>
+                <h3 class="text-xl font-bold mb-2">Organic Tea Collection</h3>
+                <p class="text-secondary mb-3">
+                  Handcrafted organic teas from premium estates.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-xl font-bold text-green-600 dark:text-green-400"
+                    >₹149</span
+                  >
+                  <span class="text-gray-500 dark:text-gray-400 line-through"
+                    >₹199</span
+                  >
+                </div>
+              </div>
+              <div class="overlay">
+                <button
+                  class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
+                  onclick="addToCartAnimation(this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Offer 4 -->
+            <div
+              class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 card overflow-hidden rounded-lg product-card"
+            >
+              <div
+                class="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden image-container"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Cleaning Products"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="product-badge text-xs font-semibold px-2 py-1 rounded-full mb-3 inline-block"
+                >
+                  BUY 2 GET 1
+                </div>
+                <h3 class="text-xl font-bold mb-2">Cleaning Essentials</h3>
+                <p class="text-secondary mb-3">
+                  Stock up on household cleaning supplies with special bundle
+                  offers.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-xl font-bold text-green-600 dark:text-green-400"
+                    >₹399</span
+                  >
+                  <span class="text-gray-500 dark:text-gray-400 line-through"
+                    >₹599</span
+                  >
+                </div>
+              </div>
+              <div class="overlay">
+                <button
+                  class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
+                  onclick="addToCartAnimation(this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- NEW: Offer 5 -->
+            <div
+              class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 card overflow-hidden rounded-lg product-card"
+            >
+              <div
+                class="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden image-container"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Fresh Vegetables"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="product-badge text-xs font-semibold px-2 py-1 rounded-full mb-3 inline-block"
+                >
+                  FARM FRESH
+                </div>
+                <h3 class="text-xl font-bold mb-2">Organic Vegetables</h3>
+                <p class="text-secondary mb-3">
+                  Pesticide-free vegetables harvested daily from local farms.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-xl font-bold text-green-600 dark:text-green-400"
+                    >₹249</span
+                  >
+                  <span class="text-gray-500 dark:text-gray-400 line-through"
+                    >₹299</span
+                  >
+                </div>
+              </div>
+              <div class="overlay">
+                <button
+                  class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
+                  onclick="addToCartAnimation(this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- NEW: Offer 6 -->
+            <div
+              class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 card overflow-hidden rounded-lg product-card"
+            >
+              <div
+                class="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden image-container"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1614159102672-0019132db823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Spices Collection"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="product-badge text-xs font-semibold px-2 py-1 rounded-full mb-3 inline-block"
+                >
+                  PREMIUM
+                </div>
+                <h3 class="text-xl font-bold mb-2">Spices Collection</h3>
+                <p class="text-secondary mb-3">
+                  Authentic Indian spices sourced from traditional growers.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-xl font-bold text-green-600 dark:text-green-400"
+                    >₹499</span
+                  >
+                  <span class="text-gray-500 dark:text-gray-400 line-through"
+                    >₹599</span
+                  >
+                </div>
+              </div>
+              <div class="overlay">
+                <button
+                  class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
+                  onclick="addToCartAnimation(this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- NEW: Offer 7 -->
+            <div
+              class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 card overflow-hidden rounded-lg product-card"
+            >
+              <div
+                class="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden image-container"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1580797771620-59c6a2e9381f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Dairy Products"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="product-badge text-xs font-semibold px-2 py-1 rounded-full mb-3 inline-block"
+                >
+                  BUNDLE OFFER
+                </div>
+                <h3 class="text-xl font-bold mb-2">Dairy Bundle</h3>
+                <p class="text-secondary mb-3">
+                  Fresh milk, curd, paneer and cheese at a special price.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-xl font-bold text-green-600 dark:text-green-400"
+                    >₹349</span
+                  >
+                  <span class="text-gray-500 dark:text-gray-400 line-through"
+                    >₹450</span
+                  >
+                </div>
+              </div>
+              <div class="overlay">
+                <button
+                  class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
+                  onclick="addToCartAnimation(this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- NEW: Offer 8 -->
+            <div
+              class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 card overflow-hidden rounded-lg product-card"
+            >
+              <div
+                class="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden image-container"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1589238344867-e2b36a64c3ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Local Snacks"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="product-badge text-xs font-semibold px-2 py-1 rounded-full mb-3 inline-block"
+                >
+                  BESTSELLER
+                </div>
+                <h3 class="text-xl font-bold mb-2">Traditional Snacks</h3>
+                <p class="text-secondary mb-3">
+                  Authentic local snacks and savories made fresh daily.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-xl font-bold text-green-600 dark:text-green-400"
+                    >₹199</span
+                  >
+                  <span class="text-gray-500 dark:text-gray-400 line-through"
+                    >₹249</span
+                  >
+                </div>
+              </div>
+              <div class="overlay">
+                <button
+                  class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
+                  onclick="addToCartAnimation(this)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Navigation -->
+          <button class="carousel-nav prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-nav next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- View All Products Button -->
+        <div class="text-center mt-8 animate-on-scroll">
+          <a
+            href="#"
+            class="inline-block btn-primary font-bold py-3 px-8 rounded-lg transition"
+            >View All Products</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 section-bg-secondary">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center section-header">
+          What Our Customers Say
+        </h2>
+
+        <div class="testimonial-slider animate-on-scroll">
+          <div class="testimonial-container">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-slide active">
+              <div class="card p-8 max-w-2xl mx-auto rounded-lg">
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4 overflow-hidden"
+                  >
+                    <img
+                      src="https://randomuser.me/api/portraits/men/32.jpg"
+                      alt="Customer"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Rajesh Kumar</h4>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">
+                      Local Resident
+                    </p>
+                    <div class="flex text-yellow-400 mt-1">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-secondary italic">
+                  "I've been shopping at Apna Supermarket for over 3 years.
+                  Their fresh vegetables and fruits are always of superior
+                  quality, and the staff is very helpful. This is my go-to store
+                  for all grocery needs!"
+                </p>
+                <div
+                  class="mt-4 text-green-600 dark:text-green-400 font-semibold"
+                >
+                  <i
+                    class="fas fa-quote-left text-opacity-20 text-4xl mr-2 opacity-30"
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-slide">
+              <div class="card p-8 max-w-2xl mx-auto rounded-lg">
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mr-4 overflow-hidden"
+                  >
+                    <img
+                      src="https://randomuser.me/api/portraits/women/44.jpg"
+                      alt="Customer"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Sneha Joshi</h4>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">
+                      Working Professional
+                    </p>
+                    <div class="flex text-yellow-400 mt-1">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-secondary italic">
+                  "The convenience of shopping at Apna Supermarket is unmatched
+                  in Kammanahalli. Their variety of products, fair pricing, and
+                  the quick checkout system makes my weekly grocery run so much
+                  easier!"
+                </p>
+                <div
+                  class="mt-4 text-green-600 dark:text-green-400 font-semibold"
+                >
+                  <i
+                    class="fas fa-quote-left text-opacity-20 text-4xl mr-2 opacity-30"
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-slide">
+              <div class="card p-8 max-w-2xl mx-auto rounded-lg">
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4 overflow-hidden"
+                  >
+                    <img
+                      src="https://randomuser.me/api/portraits/men/28.jpg"
+                      alt="Customer"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Mohammed Faisal</h4>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">
+                      Restaurant Owner
+                    </p>
+                    <div class="flex text-yellow-400 mt-1">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-secondary italic">
+                  "As a small restaurant owner, I rely on quality ingredients
+                  daily. Apna Supermarket has been a consistent supplier of
+                  fresh produce and quality groceries. Their bulk buying options
+                  and timely deliveries have been tremendously helpful for my
+                  business."
+                </p>
+                <div
+                  class="mt-4 text-green-600 dark:text-green-400 font-semibold"
+                >
+                  <i
+                    class="fas fa-quote-left text-opacity-20 text-4xl mr-2 opacity-30"
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- NEW: Testimonial 4 -->
+            <div class="testimonial-slide">
+              <div class="card p-8 max-w-2xl mx-auto rounded-lg">
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mr-4 overflow-hidden"
+                  >
+                    <img
+                      src="https://randomuser.me/api/portraits/women/29.jpg"
+                      alt="Customer"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Priya Verma</h4>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">
+                      Homemaker
+                    </p>
+                    <div class="flex text-yellow-400 mt-1">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-secondary italic">
+                  "I love the wide range of organic products available at Apna
+                  Supermarket. The staff is very knowledgeable about product
+                  origins and always helps me find healthy alternatives for my
+                  family. Their home delivery service is also very prompt!"
+                </p>
+                <div
+                  class="mt-4 text-green-600 dark:text-green-400 font-semibold"
+                >
+                  <i
+                    class="fas fa-quote-left text-opacity-20 text-4xl mr-2 opacity-30"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center mt-6 space-x-2">
+            <button
+              class="w-3 h-3 rounded-full bg-green-200 dark:bg-green-700 testimonial-dot"
+              data-index="0"
+            ></button>
+            <button
+              class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 testimonial-dot"
+              data-index="1"
+            ></button>
+            <button
+              class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 testimonial-dot"
+              data-index="2"
+            ></button>
+            <button
+              class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 testimonial-dot"
+              data-index="3"
+            ></button>
+          </div>
+
+          <div class="text-center mt-8">
+            <p class="text-gray-600 dark:text-gray-300 animate-on-scroll">
+              Join our 500+ satisfied customers who shop with us regularly!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 section-bg-primary">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center section-header">
+          Get In Touch
+        </h2>
+
+        <div
+          class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg mb-10 animate-on-scroll"
+        >
+          <div class="flex items-center">
+            <div
+              class="w-10 h-10 bg-green-100 dark:bg-green-800 rounded-full flex items-center justify-center mr-4"
+            >
+              <i
+                class="fas fa-info-circle text-green-600 dark:text-green-400"
+              ></i>
+            </div>
+            <p class="text-green-800 dark:text-green-200">
+              We value your feedback and questions! Our team usually responds
+              within 24 hours.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <!-- Contact Form -->
+          <div class="card rounded-lg p-8 animate-on-scroll">
+            <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+            <form id="contact-form">
+              <div class="mb-4">
+                <label for="name" class="block font-medium mb-2"
+                  >Your Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  required
+                />
+              </div>
+
+              <div class="mb-4">
+                <label for="phone" class="block font-medium mb-2"
+                  >Phone Number</label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label for="message" class="block font-medium mb-2"
+                  >Your Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="btn-primary font-bold py-3 px-6 rounded-lg transition w-full"
+              >
+                <i class="fas fa-paper-plane mr-2"></i> Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Store Contact Details -->
+          <div class="animate-on-scroll">
+            <h3 class="text-2xl font-semibold mb-6">Store Information</h3>
+
+            <div class="space-y-6">
+              <div
+                class="flex items-start card p-4 rounded-lg hover:scale-105 transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i
+                    class="fas fa-map-marker-alt text-green-600 dark:text-green-400 text-xl"
+                  ></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg">Address</h4>
+                  <p class="text-secondary">
+                    123, 5th Cross, Kammanahalli Main Road<br />Kammanahalli,
+                    Bangalore - 560084
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start card p-4 rounded-lg hover:scale-105 transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i
+                    class="fas fa-phone-alt text-green-600 dark:text-green-400 text-xl"
+                  ></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg">Phone</h4>
+                  <p class="text-secondary">
+                    <a
+                      href="tel:+918012345678"
+                      class="hover:text-green-600 dark:hover:text-green-400 transition"
+                      >+91 80 1234 5678</a
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start card p-4 rounded-lg hover:scale-105 transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i
+                    class="fas fa-envelope text-green-600 dark:text-green-400 text-xl"
+                  ></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg">Email</h4>
+                  <p class="text-secondary">
+                    <a
+                      href="mailto:info@apnasupermarket.com"
+                      class="hover:text-green-600 dark:hover:text-green-400 transition"
+                      >info@apnasupermarket.com</a
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex items-start card p-4 rounded-lg hover:scale-105 transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4"
+                >
+                  <i
+                    class="fas fa-clock text-green-600 dark:text-green-400 text-xl"
+                  ></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg">Business Hours</h4>
+                  <p class="text-secondary mb-1">
+                    Monday - Saturday: 8:00 AM - 10:00 PM
+                  </p>
+                  <p class="text-secondary">Sunday: 9:00 AM - 9:00 PM</p>
+                </div>
+              </div>
+
+              <div class="pt-4 flex space-x-4">
+                <a
+                  href="https://wa.me/918012345678"
+                  target="_blank"
+                  class="flex-1 inline-flex items-center justify-center btn-primary font-bold py-3 px-6 rounded-lg transition"
+                >
+                  <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                  Chat on WhatsApp
+                </a>
+
+                <a
+                  href="https://goo.gl/maps/123kammanahalli"
+                  target="_blank"
+                  class="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition"
+                >
+                  <i class="fas fa-directions mr-2 text-xl"></i>
+                  Get Directions
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location and Timing Section -->
+    <section id="location" class="py-16 section-bg-secondary">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center section-header">Find Us</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Map -->
+          <div
+            class="h-96 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden shadow-md animate-on-scroll"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.3559487859533!2d77.60679277475292!3d13.012963117498067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae178159d6759f%3A0x9532324bf2c6ac87!2sKammanahalli%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1683701234577!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          <!-- Store Hours -->
+          <div class="card rounded-lg p-8 animate-on-scroll">
+            <h3 class="text-2xl font-semibold mb-6">Store Hours</h3>
+
+            <div class="space-y-3">
+              <div
+                class="flex justify-between py-2 border-b table-row hover:bg-green-50 dark:hover:bg-green-900/20 p-2 rounded transition"
+              >
+                <span class="font-medium">Monday</span>
+                <span>8:00 AM - 10:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between py-2 border-b table-row hover:bg-green-50 dark:hover:bg-green-900/20 p-2 rounded transition"
+              >
+                <span class="font-medium">Tuesday</span>
+                <span>8:00 AM - 10:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between py-2 border-b table-row hover:bg-green-50 dark:hover:bg-green-900/20 p-2 rounded transition"
+              >
+                <span class="font-medium">Wednesday</span>
+                <span>8:00 AM - 10:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between py-2 border-b table-row hover:bg-green-50 dark:hover:bg-green-900/20 p-2 rounded transition"
+              >
+                <span class="font-medium">Thursday</span>
+                <span>8:00 AM - 10:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between py-2 border-b table-row hover:bg-green-50 dark:hover:bg-green-900/20 p-2 rounded transition"
+              >
+                <span class="font-medium">Friday</span>
+                <span>8:00 AM - 10:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between py-2 border-b table-row hover:bg-green-50 dark:hover:bg-green-900/20 p-2 rounded transition"
+              >
+                <span class="font-medium">Saturday</span>
+                <span>8:00 AM - 10:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between py-2 border-b table-row hover:bg-green-50 dark:hover:bg-green-900/20 p-2 rounded transition"
+              >
+                <span class="font-medium">Sunday</span>
+                <span>9:00 AM - 9:00 PM</span>
+              </div>
+            </div>
+
+            <div
+              class="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900 rounded-lg border border-yellow-100 dark:border-yellow-800"
+            >
+              <p class="text-yellow-800 dark:text-yellow-100 flex items-center">
+                <i class="fas fa-info-circle mr-2"></i>
+                <span
+                  >We are closed on major public holidays. Special timings may
+                  apply during festivals.</span
+                >
+              </p>
+            </div>
+
+            <div class="mt-8">
+              <h4 class="font-bold text-lg mb-4">Delivery Information</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div
+                  class="flex items-center bg-green-50 dark:bg-green-900/20 p-3 rounded-lg"
+                >
+                  <div
+                    class="w-10 h-10 bg-green-100 dark:bg-green-800 rounded-full flex items-center justify-center mr-3"
+                  >
+                    <i
+                      class="fas fa-truck text-green-600 dark:text-green-400"
+                    ></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold">Same Day Delivery</h5>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                      Order before 2 PM
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="flex items-center bg-green-50 dark:bg-green-900/20 p-3 rounded-lg"
+                >
+                  <div
+                    class="w-10 h-10 bg-green-100 dark:bg-green-800 rounded-full flex items-center justify-center mr-3"
+                  >
+                    <i
+                      class="fas fa-map-marker-alt text-green-600 dark:text-green-400"
+                    ></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold">Free Delivery</h5>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                      Within 5 km radius
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-green-600 dark:bg-green-800">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-white text-center animate-on-scroll">
+          <h2 class="text-3xl font-bold mb-3">Get Updates & Special Offers</h2>
+          <p class="mb-8">
+            Subscribe to our newsletter to receive weekly updates on new
+            products, special offers, and seasonal discounts.
+          </p>
+
+          <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+            <input
+              type="email"
+              placeholder="Your email address"
+              class="flex-1 py-3 px-4 rounded-lg text-gray-800 dark:text-white dark:bg-gray-800 border-0 focus:ring-2 focus:ring-white"
+              required
+            />
+            <button
+              type="submit"
+              class="bg-white text-green-700 hover:bg-green-100 font-bold py-3 px-6 rounded-lg transition"
+            >
+              Subscribe
+            </button>
+          </form>
+
+          <div class="mt-8 text-sm opacity-80">
+            <p>We respect your privacy. No spam, ever. Unsubscribe anytime.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 class="text-2xl font-bold mb-4 flex items-center">
+              <i
+                class="fas fa-shopping-basket mr-2 text-green-600 dark:text-green-400"
+              ></i>
+              Apna Supermarket
+            </h3>
+            <p class="mb-6">
+              Your neighborhood grocery store in Kammanahalli, Bangalore.
+            </p>
+            <p>
+              123, 5th Cross, Kammanahalli Main Road<br />Kammanahalli,
+              Bangalore - 560084
+            </p>
+          </div>
+
+          <div>
+            <h4
+              class="text-lg font-semibold mb-4 relative inline-block after:content-[''] after:absolute after:w-12 after:h-0.5 after:bg-green-600 after:dark:bg-green-400 after:bottom-[-4px] after:left-0"
+            >
+              Quick Links
+            </h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#home"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#categories"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Categories</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#offers"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Offers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#testimonials"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Testimonials</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="text-lg font-semibold mb-4 relative inline-block after:content-[''] after:absolute after:w-12 after:h-0.5 after:bg-green-600 after:dark:bg-green-400 after:bottom-[-4px] after:left-0"
+            >
+              Policies
+            </h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Refund Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >Delivery Information</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="text-lg font-semibold mb-4 relative inline-block after:content-[''] after:absolute after:w-12 after:h-0.5 after:bg-green-600 after:dark:bg-green-400 after:bottom-[-4px] after:left-0"
+            >
+              Connect With Us
+            </h4>
+            <div class="flex space-x-4 mb-4">
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-700 hover:bg-green-600 dark:bg-gray-600 dark:hover:bg-green-500 rounded-full flex items-center justify-center transition"
+                aria-label="Facebook"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-700 hover:bg-green-600 dark:bg-gray-600 dark:hover:bg-green-500 rounded-full flex items-center justify-center transition"
+                aria-label="Instagram"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-700 hover:bg-green-600 dark:bg-gray-600 dark:hover:bg-green-500 rounded-full flex items-center justify-center transition"
+                aria-label="Twitter"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-700 hover:bg-green-600 dark:bg-gray-600 dark:hover:bg-green-500 rounded-full flex items-center justify-center transition"
+                aria-label="WhatsApp"
+              >
+                <i class="fab fa-whatsapp"></i>
+              </a>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <i
+                  class="fas fa-phone-alt mr-2 text-green-600 dark:text-green-400"
+                ></i>
+                <a
+                  href="tel:+918012345678"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >+91 80 1234 5678</a
+                >
+              </div>
+              <div class="flex items-center">
+                <i
+                  class="fas fa-envelope mr-2 text-green-600 dark:text-green-400"
+                ></i>
+                <a
+                  href="mailto:info@apnasupermarket.com"
+                  class="hover:text-green-600 dark:hover:text-green-400 transition"
+                  >info@apnasupermarket.com</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-700 dark:border-gray-600 pt-6 text-center text-gray-400"
+        >
+          <p>
+            &copy; <span id="current-year"></span> Apna Supermarket. All rights
+            reserved.
+          </p>
+          <p class="mt-2 text-sm">
+            Designed and developed with
+            <i class="fas fa-heart text-red-500"></i> in Bangalore
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
