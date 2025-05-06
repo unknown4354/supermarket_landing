@@ -19,18 +19,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Contact form submission
   initContactForm();
-  
+
   // Initialize scroll animations
   initScrollAnimations();
-  
+
   // Initialize carousel navigation
   initCarouselNavigation();
-  
+
   // Initialize background parallax
   initParallax();
-  
+
   // Nav scroll effect
   initNavScroll();
+
+  // Update cart count
+  updateCartCount();
 });
 
 // Theme initialization and toggle
@@ -71,21 +74,25 @@ function initTheme() {
   }
 
   // Check for saved theme preference or use user's system preference
-  const prefersDark = localStorage.getItem("theme") === "dark" || 
-    (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  
+  const prefersDark =
+    localStorage.getItem("theme") === "dark" ||
+    (!localStorage.getItem("theme") &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+
   applyTheme(prefersDark);
 
   // Theme toggle click handlers
   themeToggle.addEventListener("click", toggleTheme);
   themeToggleMobile.addEventListener("click", toggleTheme);
-  
+
   // Listen for system theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (!localStorage.getItem("theme")) {
-      applyTheme(e.matches);
-    }
-  });
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", e => {
+      if (!localStorage.getItem("theme")) {
+        applyTheme(e.matches);
+      }
+    });
 }
 
 // Mobile menu initialization
@@ -117,11 +124,15 @@ function initMobileMenu() {
       mobileMenu.classList.add("hidden");
     });
   });
-  
+
   // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
-      mobileMenu.classList.add('hidden');
+  document.addEventListener("click", e => {
+    if (
+      !mobileMenu.contains(e.target) &&
+      !mobileMenuButton.contains(e.target) &&
+      !mobileMenu.classList.contains("hidden")
+    ) {
+      mobileMenu.classList.add("hidden");
     }
   });
 }
@@ -196,23 +207,31 @@ function initTestimonialSlider() {
       }, 5000);
     });
   });
-  
+
   // Add swipe support for testimonials on mobile
   let touchStartX = 0;
   let touchEndX = 0;
-  
-  const testimonialElement = document.querySelector('.testimonial-slider');
-  
+
+  const testimonialElement = document.querySelector(".testimonial-slider");
+
   if (testimonialElement) {
-    testimonialElement.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, false);
-    
-    testimonialElement.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, false);
-    
+    testimonialElement.addEventListener(
+      "touchstart",
+      e => {
+        touchStartX = e.changedTouches[0].screenX;
+      },
+      false
+    );
+
+    testimonialElement.addEventListener(
+      "touchend",
+      e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      },
+      false
+    );
+
     function handleSwipe() {
       if (touchEndX < touchStartX - 50) {
         // Swipe left, next slide
@@ -223,10 +242,12 @@ function initTestimonialSlider() {
       if (touchEndX > touchStartX + 50) {
         // Swipe right, previous slide
         clearInterval(testimonialInterval);
-        currentSlide = (currentSlide - 1 + testimonialSlides.length) % testimonialSlides.length;
+        currentSlide =
+          (currentSlide - 1 + testimonialSlides.length) %
+          testimonialSlides.length;
         showSlide(currentSlide);
       }
-      
+
       // Restart auto-rotation
       testimonialInterval = setInterval(() => {
         currentSlide = (currentSlide + 1) % testimonialSlides.length;
@@ -242,21 +263,21 @@ function initContactForm() {
 
   if (contactForm) {
     // Add input animations
-    const formInputs = contactForm.querySelectorAll('input, textarea');
+    const formInputs = contactForm.querySelectorAll("input, textarea");
     formInputs.forEach(input => {
       const label = input.previousElementSibling;
-      
+
       // Focus effect
-      input.addEventListener('focus', () => {
-        label.classList.add('text-green-600', 'dark:text-green-400');
+      input.addEventListener("focus", () => {
+        label.classList.add("text-green-600", "dark:text-green-400");
       });
-      
+
       // Blur effect
-      input.addEventListener('blur', () => {
-        label.classList.remove('text-green-600', 'dark:text-green-400');
+      input.addEventListener("blur", () => {
+        label.classList.remove("text-green-600", "dark:text-green-400");
       });
     });
-    
+
     // Form submission
     contactForm.addEventListener("submit", function(e) {
       e.preventDefault();
@@ -288,64 +309,71 @@ function initContactForm() {
 
 // Initialize scroll animations
 function initScrollAnimations() {
-  const animatedElements = document.querySelectorAll('.animate-on-scroll');
-  const staggerItems = document.querySelectorAll('.stagger-item');
-  
+  const animatedElements = document.querySelectorAll(".animate-on-scroll");
+  const staggerItems = document.querySelectorAll(".stagger-item");
+
   // Check if element is in viewport
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85
+      rect.top <=
+      (window.innerHeight || document.documentElement.clientHeight) * 0.85
     );
   }
-  
+
   // Function to animate elements when they enter viewport
   function checkAnimations() {
     animatedElements.forEach(element => {
       if (isInViewport(element)) {
-        element.classList.add('visible');
+        element.classList.add("visible");
       }
     });
-    
+
     // Staggered animations for grid items
     staggerItems.forEach(item => {
       if (isInViewport(item)) {
-        item.classList.add('visible');
+        item.classList.add("visible");
       }
     });
   }
-  
+
   // Initial check
   checkAnimations();
-  
+
   // Add scroll listener
-  window.addEventListener('scroll', checkAnimations);
+  window.addEventListener("scroll", checkAnimations);
 }
 
 // Initialize carousel navigation
 function initCarouselNavigation() {
-  const carousels = document.querySelectorAll('.carousel-container');
-  
+  const carousels = document.querySelectorAll(".carousel-container");
+
   carousels.forEach(carousel => {
-    const prevBtn = carousel.nextElementSibling?.classList.contains('carousel-nav') ? 
-                   carousel.nextElementSibling : null;
-    const nextBtn = prevBtn?.nextElementSibling?.classList.contains('carousel-nav') ? 
-                   prevBtn.nextElementSibling : null;
-    
+    const nextSibling = carousel.nextElementSibling;
+    const prevBtn =
+      nextSibling && nextSibling.classList.contains("carousel-nav")
+        ? nextSibling
+        : null;
+    const nextNextSibling = prevBtn && prevBtn.nextElementSibling;
+    const nextBtn =
+      nextNextSibling && nextNextSibling.classList.contains("carousel-nav")
+        ? nextNextSibling
+        : null;
+
     if (prevBtn && nextBtn) {
       // Previous button click
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener("click", () => {
         carousel.scrollBy({
           left: -carousel.offsetWidth / 2,
-          behavior: 'smooth'
+          behavior: "smooth"
         });
       });
-      
+
       // Next button click
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener("click", () => {
         carousel.scrollBy({
           left: carousel.offsetWidth / 2,
-          behavior: 'smooth'
+          behavior: "smooth"
         });
       });
     }
@@ -354,58 +382,119 @@ function initCarouselNavigation() {
 
 // Initialize parallax effect
 function initParallax() {
-  const parallaxElements = document.querySelectorAll('.parallax');
-  
+  const parallaxElements = document.querySelectorAll(".parallax");
+
   function updateParallax() {
     parallaxElements.forEach(element => {
       const scrollPosition = window.pageYOffset;
       const elementTop = element.offsetTop;
       const elementVisible = elementTop - window.innerHeight;
-      
+
       if (scrollPosition > elementVisible) {
-        const speed = element.getAttribute('data-speed') || 0.5;
+        const speed = element.getAttribute("data-speed") || 0.5;
         const yPos = (scrollPosition - elementTop) * speed;
         element.style.transform = `translate3d(0, ${yPos}px, 0)`;
       }
     });
   }
-  
-  window.addEventListener('scroll', updateParallax);
+
+  window.addEventListener("scroll", updateParallax);
   updateParallax();
 }
 
 // Initialize scroll effect for navigation
 function initNavScroll() {
-  const nav = document.querySelector('nav');
-  
+  const nav = document.querySelector("nav");
+
   function updateNav() {
     if (window.scrollY > 100) {
-      nav.classList.add('scrolled');
+      nav.classList.add("scrolled");
     } else {
-      nav.classList.remove('scrolled');
+      nav.classList.remove("scrolled");
     }
   }
-  
-  window.addEventListener('scroll', updateNav);
+
+  window.addEventListener("scroll", updateNav);
   updateNav();
 }
 
 // Add to cart animation
 function addToCartAnimation(button) {
-  button.classList.add('animate-pulse');
-  
+  button.classList.add("animate-pulse");
+
   // Show added to cart notification
-  const notification = document.createElement('div');
-  notification.className = 'fixed top-20 right-5 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-out';
-  notification.innerText = 'Added to cart!';
+  const notification = document.createElement("div");
+  notification.className =
+    "fixed top-20 right-5 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-out";
+  notification.innerText = "Added to cart!";
   document.body.appendChild(notification);
-  
+
   // Remove animation and notification after 2 seconds
   setTimeout(() => {
-    button.classList.remove('animate-pulse');
-    notification.style.opacity = '0';
+    button.classList.remove("animate-pulse");
+    notification.style.opacity = "0";
     setTimeout(() => {
       notification.remove();
+    }, 300);
+  }, 2000);
+}
+
+// Update cart count badge
+function updateCartCount() {
+  const cartCount = document.getElementById("cart-count");
+  if (cartCount) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+    cartCount.style.display = totalItems > 0 ? "flex" : "none";
+  }
+}
+
+// Add to cart functionality
+function addToCart(product) {
+  // Get existing cart from localStorage
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Check if product already exists in cart
+  const existingItemIndex = cart.findIndex(item => item.id === product.id);
+
+  if (existingItemIndex > -1) {
+    // Increment quantity if item exists
+    cart[existingItemIndex].quantity++;
+  } else {
+    // Add new item to cart
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+  }
+
+  // Save updated cart to localStorage
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Update cart count
+  updateCartCount();
+
+  // Show success message with animation
+  const successMessage = document.createElement("div");
+  successMessage.className =
+    "fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-transform duration-300 translate-y-0";
+  successMessage.innerHTML = `
+    <div class="flex items-center">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>Added to cart!</span>
+    </div>
+  `;
+  document.body.appendChild(successMessage);
+
+  // Remove success message after 2 seconds
+  setTimeout(() => {
+    successMessage.style.transform = "translateY(-100%)";
+    setTimeout(() => {
+      document.body.removeChild(successMessage);
     }, 300);
   }, 2000);
 }

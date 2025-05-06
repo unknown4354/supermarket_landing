@@ -94,6 +94,17 @@
               class="hover:text-green-600 dark:hover:text-green-400 transition"
               >Contact</a
             >
+            <a
+              href="cart.html"
+              class="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 relative"
+            >
+              <i class="fas fa-shopping-cart mr-1"></i> Cart
+              <span
+                id="cart-count"
+                class="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
             <button id="theme-toggle" class="theme-toggle p-2 rounded-full">
               <i
                 id="theme-icon"
@@ -433,7 +444,12 @@
               <div class="overlay">
                 <button
                   class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
-                  onclick="addToCartAnimation(this)"
+                  onclick="addToCart({
+                    id: 'fruits-1',
+                    name: 'Fresh Seasonal Fruits',
+                    price: 199,
+                    image: 'https://images.unsplash.com/photo-1615484477778-ca3b77940c25?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  })"
                 >
                   Add to Cart
                 </button>
@@ -469,14 +485,19 @@
                     >₹299</span
                   >
                   <span class="text-gray-500 dark:text-gray-400 line-through"
-                    >₹350</span
+                    >₹399</span
                   >
                 </div>
               </div>
               <div class="overlay">
                 <button
                   class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
-                  onclick="addToCartAnimation(this)"
+                  onclick="addToCart({
+                    id: 'rice-1',
+                    name: 'Premium Rice',
+                    price: 299,
+                    image: 'https://images.unsplash.com/photo-1586347875435-82d70d1da2e7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  })"
                 >
                   Add to Cart
                 </button>
@@ -519,7 +540,12 @@
               <div class="overlay">
                 <button
                   class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
-                  onclick="addToCartAnimation(this)"
+                  onclick="addToCart({
+                    id: 'tea-1',
+                    name: 'Organic Tea Collection',
+                    price: 149,
+                    image: 'https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  })"
                 >
                   Add to Cart
                 </button>
@@ -563,7 +589,12 @@
               <div class="overlay">
                 <button
                   class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
-                  onclick="addToCartAnimation(this)"
+                  onclick="addToCart({
+                    id: 'cleaning-1',
+                    name: 'Cleaning Essentials',
+                    price: 399,
+                    image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  })"
                 >
                   Add to Cart
                 </button>
@@ -599,14 +630,19 @@
                     >₹249</span
                   >
                   <span class="text-gray-500 dark:text-gray-400 line-through"
-                    >₹299</span
+                    >₹349</span
                   >
                 </div>
               </div>
               <div class="overlay">
                 <button
                   class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
-                  onclick="addToCartAnimation(this)"
+                  onclick="addToCart({
+                    id: 'vegetables-1',
+                    name: 'Organic Vegetables',
+                    price: 249,
+                    image: 'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  })"
                 >
                   Add to Cart
                 </button>
@@ -649,7 +685,12 @@
               <div class="overlay">
                 <button
                   class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
-                  onclick="addToCartAnimation(this)"
+                  onclick="addToCart({
+                    id: 'spices-1',
+                    name: 'Spices Collection',
+                    price: 499,
+                    image: 'https://images.unsplash.com/photo-1614159102672-0019132db823?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  })"
                 >
                   Add to Cart
                 </button>
@@ -685,14 +726,19 @@
                     >₹349</span
                   >
                   <span class="text-gray-500 dark:text-gray-400 line-through"
-                    >₹450</span
+                    >₹449</span
                   >
                 </div>
               </div>
               <div class="overlay">
                 <button
                   class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
-                  onclick="addToCartAnimation(this)"
+                  onclick="addToCart({
+                    id: 'dairy-1',
+                    name: 'Dairy Bundle',
+                    price: 349,
+                    image: 'https://images.unsplash.com/photo-1580797771620-59c6a2e9381f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  })"
                 >
                   Add to Cart
                 </button>
@@ -735,7 +781,12 @@
               <div class="overlay">
                 <button
                   class="bg-white text-green-600 hover:bg-green-600 hover:text-white transition font-bold py-2 px-4 rounded-full"
-                  onclick="addToCartAnimation(this)"
+                  onclick="addToCart({
+                    id: 'snacks-1',
+                    name: 'Traditional Snacks',
+                    price: 199,
+                    image: 'https://images.unsplash.com/photo-1589238344867-e2b36a64c3ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                  })"
                 >
                   Add to Cart
                 </button>
@@ -1175,7 +1226,7 @@
             class="h-96 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden shadow-md animate-on-scroll"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.3559487859533!2d77.60679277475292!3d13.012963117498067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae178159d6759f%3A0x9532324bf2c6ac87!2sKammanahalli%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1683701234577!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124403.22334574391!2d77.54385314401452!3d12.997369964702015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae172487333967%3A0xdaf6ce734481223e!2sApna%20Supermarket!5e0!3m2!1sen!2sin!4v1746554122074!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style="border: 0"
